@@ -1,8 +1,6 @@
 'ДЛЯ КОРРЕКТНОЙ РАБОТЫ:
 'объеденить клетки в диапазоне от А1 до С1 (Главная - Выравнивание - Объеденить и поместить в центре)
 'написать в клетке А6 - "Сброс игры"
-'написать в клетке F1 - "Имя первого игрока"
-'написать в клетке G1 - "Имя второго игрока"
 'выделить цветом игровое поле в диапазоне от А2 до С4
 
 
@@ -13,12 +11,6 @@ Private state
 'выйгравший игрок
 '0 - ни один из игроков (еще) не выйграл, 1 - выйграл первый игрок, 2 - выйграл второй игрок
 Private win
-
-'имя первого игрока, берется из ячейки F2
-Private playerone
-
-'имя второго игрока, берется из ячейки G2
-Private playertwo
 
 'флаг для заполненного поля
 '0 - поле не заполнено, 1 - поле заполнено
@@ -39,25 +31,9 @@ Sub Worksheet_SelectionChange(ByVal Target As Range)
 
             'записать в ячейку A1 кто ходит первым
             If state = 1 Then
-                Range("A1").Cells(1, 1).Value = "Ход игрока " & playerone & " (O)"
+                Range("A1").Cells(1, 1).Value = "Ход игрока 1"
             ElseIf state = 2 Then
-                Range("A1").Cells(1, 1).Value = "Ход игрока " & playertwo & " (X)"
-            End If
-
-            'записать в переменную playerone имя первого игрока из ячейки F2
-            'если ячейка пустая - имя первого игрока будет "1"
-            If Not Range("F2") = "" Then
-                playerone = Range("F2").Value
-            Else
-                playerone = "1"
-            End If
-
-            'записать в переменную playertwo имя второго игрока из ячейки G2
-            'если ячейка пустая - имя второго игрока будет "2"
-            If Not Range("G2") = "" Then
-                playertwo = Range("G2").Value
-            Else
-                playertwo = "2"
+                Range("A1").Cells(1, 1).Value = "Ход игрока 2"
             End If
         End If
     End If
@@ -82,7 +58,7 @@ Sub Worksheet_SelectionChange(ByVal Target As Range)
                 Target.Value = "O"
                 'дать ход другому игроку
                 state = 2
-                Range("A1").Cells(1, 1).Value = "Ход игрока " & playertwo & " (X)"
+                Range("A1").Cells(1, 1).Value = "Ход игрока 2"
 
             'если ход игрока 2
             ElseIf state = 2 Then
@@ -90,7 +66,7 @@ Sub Worksheet_SelectionChange(ByVal Target As Range)
                 Target.Value = "X"
                 'дать ход другому игроку
                 state = 1
-                Range("A1").Cells(1, 1).Value = "Ход игрока " & playerone & " (O)"
+                Range("A1").Cells(1, 1).Value = "Ход игрока 1"
             End If
         End If
         
@@ -107,7 +83,7 @@ Sub Worksheet_SelectionChange(ByVal Target As Range)
             win = 0
 
             'оповестить о том, что игрок 1 выйграл
-            Range("A1").Cells(1, 1).Value = "Игрок " & playerone & " выйграл!"
+            Range("A1").Cells(1, 1).Value = "Игрок 1 выйграл!"
 
         'если выйграл игрок 2
         ElseIf win = 2 Then
@@ -120,7 +96,7 @@ Sub Worksheet_SelectionChange(ByVal Target As Range)
             win = 0
 
             'оповестить о том, что игрок 2 выйграл
-            Range("A1").Cells(1, 1).Value = "Игрок " & playertwo & " выйграл!"
+            Range("A1").Cells(1, 1).Value = "Игрок 2 выйграл!"
 
         'если не выйграл никто но поле уже заполнено - объявить ничью
         Else
