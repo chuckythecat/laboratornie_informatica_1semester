@@ -30,9 +30,6 @@ objSelection.InsertAfter Text:=vbNewLine & "Невозможно вычисли�
 Else
 objSelection.InsertAfter Text:=vbNewLine & Replace("Факториал числа: %1", "%1", CStr(result))
 End If
-
-' Debug.Print Replace("Введенное число: %1", "%1", CStr(res))
-' Debug.Print Replace("Факториал числа: %1", "%1", res)
 End Sub
 Public Function getResult(a)
 Dim Item
