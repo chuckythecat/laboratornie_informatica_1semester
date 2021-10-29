@@ -47,6 +47,6 @@ Sub quadraticequation()
         x2 = (-b - disc ^ (1 / 2)) / (2 * a)
         selection.InsertAfter text:=vbNewLine & Replace(Replace("x1 = %1, x2 = %2", "%1", CStr(x1)), "%2", CStr(x2))
     Else
-        selection.InsertAfter text:=vbNewLine & "Äàííîå óðàâíåíèå íå èìååò äåéñòâèòåëüíûõ ÷èñåë."
+        selection.InsertAfter text:=vbNewLine & "Данное уравнение не имеет действительных чисел."
     End If
 End Sub
